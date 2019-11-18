@@ -36,7 +36,7 @@ class NoteListComponent extends React.Component {
 
 		let style = {
 			root: {
-				backgroundColor: theme.backgroundColor,
+				backgroundColor: theme.notelistBgColor,
 			},
 			listItem: {
 				maxWidth: itemWidth,
@@ -44,11 +44,11 @@ class NoteListComponent extends React.Component {
 				boxSizing: 'border-box',
 				display: 'flex',
 				alignItems: 'stretch',
-				backgroundColor: theme.backgroundColor,
 				borderBottom: `1px solid ${theme.dividerColor}`,
 			},
 			listItemSelected: {
-				backgroundColor: theme.selectedColor,
+				color: theme.notelistSelectedFgColor,
+				backgroundColor: theme.notelistSelectedBgColor,
 			},
 			listItemTitle: {
 				fontFamily: theme.fontFamily,
@@ -180,11 +180,20 @@ class NoteListComponent extends React.Component {
 		) : null;
 
 		let listItemTitleStyle = Object.assign({}, this.style().listItemTitle);
+		if (this.props.selectedNoteIds.indexOf(item.id) >= 0) {
+			listItemTitleStyle = Object.assign(listItemTitleStyle, this.style().listItemSelected);
+		}
+
 		listItemTitleStyle.paddingLeft = !checkbox ? hPadding : 4;
 		if (item.is_todo && !!item.todo_completed) listItemTitleStyle = Object.assign(listItemTitleStyle, this.style().listItemTitleCompleted);
 
 		let displayTitle = Note.displayTitle(item);
 		let titleComp = null;
+
+		let spanStyle = {
+			overflow: 'hidden',
+			textOverflow: 'ellipsis',
+		};
 
 		if (highlightedWords.length) {
 			const titleElement = document.createElement('span');
@@ -210,9 +219,9 @@ class NoteListComponent extends React.Component {
 			// with `textContent` so it cannot contain any XSS attacks. We use this feature because
 			// mark.js can only deal with DOM elements.
 			// https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml
-			titleComp = <span dangerouslySetInnerHTML={{ __html: titleElement.outerHTML }}></span>;
+			titleComp = <span style={spanStyle} dangerouslySetInnerHTML={{ __html: titleElement.outerHTML }}></span>;
 		} else {
-			titleComp = <span>{displayTitle}</span>;
+			titleComp = <span style={spanStyle}>{displayTitle}</span>;
 		}
 
 		const watchedIconStyle = {

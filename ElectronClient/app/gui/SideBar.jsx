@@ -107,7 +107,7 @@ class SideBarComponent extends React.Component {
 
 		let style = {
 			root: {
-				backgroundColor: theme.backgroundColor2,
+				backgroundColor: theme.sidebarBgColor,
 			},
 			listItemContainer: {
 				boxSizing: 'border-box',
@@ -122,7 +122,7 @@ class SideBarComponent extends React.Component {
 				fontFamily: theme.fontFamily,
 				fontSize: theme.fontSize,
 				textDecoration: 'none',
-				color: theme.color2,
+				color: theme.sidebarFgColor,
 				cursor: 'default',
 				opacity: 0.8,
 				whiteSpace: 'nowrap',
@@ -131,10 +131,12 @@ class SideBarComponent extends React.Component {
 				alignItems: 'center',
 			},
 			listItemSelected: {
-				backgroundColor: theme.selectedColor2,
+				opacity: 1,
+				color: theme.sidebarSelectedFgColor,
+				backgroundColor: theme.sidebarSelectedBgColor,
 			},
 			listItemExpandIcon: {
-				color: theme.color2,
+				color: theme.sidebarFgColor,
 				cursor: 'default',
 				opacity: 0.8,
 				// fontFamily: theme.fontFamily,
@@ -154,7 +156,7 @@ class SideBarComponent extends React.Component {
 				fontSize: theme.fontSize * 1.16,
 				textDecoration: 'none',
 				boxSizing: 'border-box',
-				color: theme.color2,
+				color: theme.sidebarFgColor,
 				paddingLeft: 8,
 				display: 'flex',
 				alignItems: 'center',
@@ -165,7 +167,7 @@ class SideBarComponent extends React.Component {
 				fontSize: theme.fontSize,
 				textDecoration: 'none',
 				boxSizing: 'border-box',
-				color: theme.color2,
+				color: theme.sidebarFgColor,
 				display: 'flex',
 				alignItems: 'center',
 				justifyContent: 'center',
@@ -178,7 +180,7 @@ class SideBarComponent extends React.Component {
 			syncReport: {
 				fontFamily: theme.fontFamily,
 				fontSize: Math.round(theme.fontSize * 0.9),
-				color: theme.color2,
+				color: theme.sidebarFgColor,
 				opacity: 0.5,
 				display: 'flex',
 				alignItems: 'left',
@@ -446,7 +448,10 @@ class SideBarComponent extends React.Component {
 		const itemTitle = Folder.displayTitle(folder);
 
 		let containerStyle = Object.assign({}, this.style(depth).listItemContainer);
-		if (selected) containerStyle = Object.assign(containerStyle, this.style().listItemSelected);
+		if (selected) {
+			containerStyle = Object.assign(containerStyle, this.style().listItemSelected);
+			style = Object.assign(style, this.style().listItemSelected);
+		}
 
 		let expandLinkStyle = Object.assign({}, this.style().listItemExpandIcon);
 		let expandIconStyle = {

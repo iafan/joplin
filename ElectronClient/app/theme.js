@@ -5,7 +5,7 @@ const nordStyle = require('./gui/style/theme/nord');
 // i.e. should not be used for colors
 const globalStyle = {
 	fontSize: 12,
-	fontFamily: 'sans-serif',
+	fontFamily: '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
 	margin: 15, // No text and no interactive component should be within this margin
 	itemMarginTop: 10,
 	itemMarginBottom: 10,
@@ -85,11 +85,16 @@ const lightStyle = {
 	dividerColor: '#dddddd',
 	selectedColor: '#e5e5e5',
 	urlColor: '#155BDA',
+	searchBgColor: 'rgba(0,0,0,0.05)',
 
-	backgroundColor2: '#162B3D',
+	sidebarBgColor: '#162B3D',
+	notelistBgColor: '#f4f4f4',
 	depthColor: 'rgb(100, 182, 253, OPACITY)',
-	color2: '#f5f5f5',
-	selectedColor2: '#0269C2',
+	sidebarFgColor: '#f5f5f5',
+	sidebarSelectedFgColor: '#ffffff',
+	sidebarSelectedBgColor: '#0269C2',
+	notelistSelectedFgColor: '#ffffff',
+	notelistSelectedBgColor: '#0269C2',
 	colorError2: '#ff6c6c',
 
 	raisedBackgroundColor: '#e5e5e5',
@@ -122,11 +127,16 @@ const darkStyle = {
 	dividerColor: '#555555',
 	selectedColor: '#333333',
 	urlColor: '#4E87EE',
+	searchBgColor: 'rgba(255,255,255,0.1)',
 
-	backgroundColor2: '#181A1D',
+	sidebarBgColor: '#181A1D',
+	notelistBgColor: '#1D2024',
 	depthColor: 'rgb(200, 200, 200, OPACITY)',
-	color2: '#ffffff',
-	selectedColor2: '#013F74',
+	sidebarFgColor: '#ffffff',
+	sidebarSelectedFgColor: '#ffffff',
+	sidebarSelectedBgColor: '#013F74',
+	notelistSelectedFgColor: '#ffffff',
+	notelistSelectedBgColor: '#013F74',
 	colorError2: '#ff6c6c',
 
 	raisedBackgroundColor: '#474747',
@@ -162,11 +172,16 @@ const solarizedLightStyle = {
 	dividerColor: '#eee8d5',
 	selectedColor: '#eee8d5',
 	urlColor: '#268bd2',
+	searchBgColor: 'rgba(0,0,0,0.1)',
 
-	backgroundColor2: '#002b36',
+	sidebarBgColor: '#002b36',
+	notelistBgColor: '#fdf6e3',
 	depthColor: 'rgb(100, 182, 253, OPACITY)',
-	color2: '#eee8d5',
-	selectedColor2: '#6c71c4',
+	sidebarFgColor: '#eee8d5',
+	sidebarSelectedFgColor: '#fdf6e3',
+	sidebarSelectedBgColor: '#6c71c4',
+	notelistSelectedFgColor: '#fdf6e3',
+	notelistSelectedBgColor: '#6c71c4',
 	colorError2: '#cb4b16',
 
 	raisedBackgroundColor: '#eee8d5',
@@ -199,11 +214,16 @@ const solarizedDarkStyle = {
 	dividerColor: '#586e75',
 	selectedColor: '#073642',
 	urlColor: '#268bd2',
+	searchBgColor: 'rgba(255,255,255,0.1)',
 
-	backgroundColor2: '#073642',
+	sidebarBgColor: '#073642',
+	notelistBgColor: '#002b36',
 	depthColor: 'rgb(200, 200, 200, OPACITY)',
-	color2: '#eee8d5',
-	selectedColor2: '#6c71c4',
+	sidebarFgColor: '#eee8d5',
+	sidebarSelectedFgColor: '#ffffff',
+	sidebarSelectedBgColor: '#6c71c4',
+	notelistSelectedFgColor: '#ffffff',
+	notelistSelectedBgColor: '#6c71c4',
 	colorError2: '#cb4b16',
 
 	raisedBackgroundColor: '#073642',
@@ -236,11 +256,16 @@ const draculaStyle = {
 	dividerColor: '#bd93f9',
 	selectedColor: '#44475a',
 	urlColor: '#8be9fd',
+	searchBgColor: 'rgba(255,255,255,0.1)',
 
-	backgroundColor2: '#21222C',
+	sidebarBgColor: '#21222C',
+	notelistBgColor: '#282a36',
 	depthColor: 'rgb(200, 200, 200, OPACITY)',
-	color2: '#bd93f9',
-	selectedColor2: '#44475a',
+	sidebarFgColor: '#bd93f9',
+	sidebarSelectedFgColor: '#ffffff',
+	sidebarSelectedBgColor: '#44475a',
+	notelistSelectedFgColor: '#ffffff',
+	notelistSelectedBgColor: '#44475a',
 	colorError2: '#ff5555',
 
 	raisedBackgroundColor: '#44475a',
@@ -358,10 +383,10 @@ function addExtraStyles(style) {
 
 	style.dropdownList = Object.assign({}, style.inputStyle);
 
-	// In general the highlighted color, used to highlight text or icons, should be the same as selectedColor2
+	// In general the highlighted color, used to highlight text or icons, should be the same as sidebarSelectedBgColor
 	// but some times, depending on the theme, it might be too dark or too light, so it can be
 	// specified directly by the theme too.
-	if (!style.highlightedColor) style.highlightedColor = style.selectedColor2;
+	if (!style.highlightedColor) style.highlightedColor = style.sidebarSelectedBgColor;
 
 	return style;
 }

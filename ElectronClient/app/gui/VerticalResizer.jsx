@@ -83,6 +83,7 @@ class VerticalResizer extends React.PureComponent {
 			{
 				height: '100%',
 				width: 5,
+				marginLeft: -5,
 				borderColor: 'red',
 				borderWidth: debug ? 1 : 0,
 				borderStyle: 'solid',

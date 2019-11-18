@@ -1841,6 +1841,7 @@ class NoteTextComponent extends React.Component {
 
 		const rootStyle = Object.assign(
 			{
+				borderTop: `${borderWidth}px solid ${theme.dividerColor}`,
 				borderLeft: `${borderWidth}px solid ${theme.dividerColor}`,
 				boxSizing: 'border-box',
 				paddingLeft: 10,
@@ -1872,10 +1873,13 @@ class NoteTextComponent extends React.Component {
 
 		const titleBarStyle = {
 			width: innerWidth - rootStyle.paddingLeft,
-			height: 30,
+			height: 50, // ideally should be calculated automatically
 			boxSizing: 'border-box',
-			marginTop: 10,
-			marginBottom: 0,
+			marginTop: 0, // needed just for height calculation below
+			marginBottom: 0, // needed just for height calculation below
+			paddingTop: 10,
+			paddingBottom: 10,
+			borderBottom: `1px solid ${theme.dividerColor}`,
 			display: 'flex',
 			flexDirection: 'row',
 			alignItems: 'center',
@@ -1886,14 +1890,14 @@ class NoteTextComponent extends React.Component {
 			display: 'inline-block',
 			paddingTop: 5,
 			paddingBottom: 5,
-			paddingLeft: 8,
-			paddingRight: 8,
+			paddingLeft: 10,
+			paddingRight: 10,
 			marginRight: rootStyle.paddingLeft,
 			color: theme.color,
 			backgroundColor: theme.backgroundColor,
-			border: '1px solid',
+			border: 'none',
 			borderColor: theme.dividerColor,
-			fontSize: theme.fontSize,
+			fontSize: Math.round(theme.fontSize * 1.5),
 		};
 
 		const toolbarStyle = {};

@@ -161,22 +161,24 @@ class HeaderComponent extends React.Component {
 		const inputStyle = {
 			display: 'flex',
 			flex: 1,
-			marginLeft: 10,
-			paddingLeft: 6,
-			paddingRight: 6,
-			paddingTop: 1, // vertical alignment with buttons
-			paddingBottom: 0, // vertical alignment with buttons
+			marginRight: 10,
+			paddingLeft: 30,
+			paddingRight: 10,
 			height: style.fontSize * 2,
+			borderRadius: style.fontSize,
 			width: 300,
 			color: style.color,
 			fontSize: style.fontSize,
 			fontFamily: style.fontFamily,
-			backgroundColor: style.searchColor,
-			border: '1px solid',
-			borderColor: style.dividerColor,
+			backgroundColor: style.searchBgColor,
+			border: 'none',
+			outline: 'none',
 		};
 
 		const searchButton = {
+			position: 'relative',
+			width: 14,
+			left: 28,
 			paddingLeft: 4,
 			paddingRight: 4,
 			paddingTop: 2,
@@ -208,10 +210,10 @@ class HeaderComponent extends React.Component {
 
 		return (
 			<div key={key} style={containerStyle}>
-				<input type="text" style={inputStyle} placeholder={options.title} value={state.searchQuery} onChange={this.search_onChange} ref={elem => (this.searchElement_ = elem)} onFocus={this.search_onFocus} onBlur={this.search_onBlur} onKeyDown={this.search_keyDown} />
 				<a href="#" style={searchButton} onClick={this.search_onClear}>
 					{icon}
 				</a>
+				<input type="text" style={inputStyle} placeholder={options.title} value={state.searchQuery} onChange={this.search_onChange} ref={elem => (this.searchElement_ = elem)} onFocus={this.search_onFocus} onBlur={this.search_onBlur} onKeyDown={this.search_keyDown} />
 				{usageLink}
 			</div>
 		);
@@ -224,7 +226,6 @@ class HeaderComponent extends React.Component {
 		style.height = theme.headerHeight;
 		style.display = 'flex';
 		style.flexDirection = 'row';
-		style.borderBottom = `1px solid ${theme.dividerColor}`;
 		style.boxSizing = 'border-box';
 
 		const items = [];
@@ -236,7 +237,7 @@ class HeaderComponent extends React.Component {
 			paddingLeft: theme.headerButtonHPadding,
 			paddingRight: theme.headerButtonHPadding,
 			color: theme.color,
-			searchColor: theme.backgroundColor,
+			searchBgColor: theme.searchBgColor,
 			dividerColor: theme.dividerColor,
 			textDecoration: 'none',
 			fontFamily: theme.fontFamily,

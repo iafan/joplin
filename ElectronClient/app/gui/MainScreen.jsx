@@ -387,6 +387,7 @@ class MainScreenComponent extends React.Component {
 			height: rowHeight,
 			display: 'inline-block',
 			verticalAlign: 'top',
+			background: theme.notelistBgColor,
 		};
 
 		if (isNoteListVisible === false) {
